@@ -7,6 +7,7 @@ Project aims to create a Task Tracker App.
 ## Problem Statement
 
 - We are adding a new project to our portfolios. So you and your colleagues have started to work on the project.
+- Aim to practice components, states, functions
 
 ## Project Skeleton
 
