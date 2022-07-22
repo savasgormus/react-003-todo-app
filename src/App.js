@@ -1,7 +1,8 @@
 import './App.css';
 import Header from './components/Header';
 import {useState} from "react";
-import AddTask from './components/AddTask';
+// import AddTask from './components/AddTask';
+import Tasks from './components/Tasks';
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <Header title="TASK TRACKER" />
-      <AddTask tasks={tasks}/>
+      <Tasks tasks={tasks}/>
     </div>
   );
 }

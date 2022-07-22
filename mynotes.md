@@ -54,8 +54,7 @@ const handleClick = () => {
 
 - app.js dosyasına bakalım. burada useState snippet'ını kullanarak ile tasklarımızı oluşturacağız. 
 
-
-```js
+```jsx
 // app.js
 import {useState} from "react";
 
@@ -84,7 +83,87 @@ import {useState} from "react";
   ]);
 ``` 
 
-- tasklarımızı oluşturduğumuza göre şimdi AddTask.jsx dosyasına dönüp componentimizi şekillendirip app.js dosyamıza ekleyebiliriz. eklediğimiz AddTask componentine app.js dosyamızdan az önce tasklar için oluşturduğumuz state'i probs olarak göndereceğiz: ```<AddTasks task={tasks}/>```
+- Tasks.jsx dosyamızda componentimizi oluşturup görüntüleyeceğiz. tasklarımızı oluşturduğumuza göre şimdi Tasks.jsx dosyasına dönüp componentimizi şekillendirip app.js dosyamıza ekleyebiliriz. eklediğimiz Tasks componentine app.js dosyamızdan az önce tasklar için oluşturduğumuz state'i probs olarak göndereceğiz: ```<Tasks task={tasks}/>```
+
+- tasks.jsx dosyamızın probs alanına {tasks}'ı girdik ve map işlemi ile bunu console'da önce sergileyelim:
+
+```jsx
+const Tasks = ({tasks}) => {
+  return (
+    <div>
+        {
+            tasks.map((task) => console.log(task.text))
+        }
+    </div>
+  )
+}
+```
+
+- ya da p tagi ile sergileyip sayfamızda görelim. ``` {tasks.map((task) => (<p>{task.text}</p>))} ```
+
+- tekrar parçalama işlemi yapacağız. Task.jsx dosyamıza girip rafce ile componentimizi oluşturalım ve yukarıda sergilediğimiz her bir öğeyi burada manüpile edelim. başlangıç olarak şu şekilde basit bir yapı oluşturalım ve bunu tasks.jsx içerisinde çağırıp görelim.
+
+```jsx
+//task.jsx
+
+import {FaTimesCircle} from "react-icons/fa";
+// react iconsdan çektiğimiz X ikonu
+
+const Task = () => {
+  return (
+    <div>
+        <h3>Text <FaTimesCircle/></h3>
+        <p>Day time</p>
+    </div>
+  )
+}
+
+export default Task
+```
+
+- task.jsx'imizdeki h3 ve p taglarne {task.text} ve {task.day} ekleyerek probumuzu göndereceğimiz alanı oluşturabiliriz.
+
+- fakat tasks.jsx'de yazdığımız map işlemini şimdi değiştireceğiz: ``` {tasks.map((task) => ( <Task tasks={task} /> ) )} ``` böylece component'e vereceğimiz her prob için bize map işlemiyle görüntüleyecek. 
+
+```jsx
+// task.jsx son hali
+
+import {FaTimesCircle} from "react-icons/fa";
+// react iconsdan çektiğimiz X ikonu
+
+const Task = ({task}) => {
+  return (
+    <div>
+        <h3>{task.text} <FaTimesCircle style={{color:"red", cursor:"pointer"}}/></h3>
+        <p> {task.day}</p>
+    </div>
+  )
+}
+
+export default Task
+// -------------------------------------------
+// tasks.jsx son hali
+
+import Task from './Task'
+
+const Tasks = ({tasks}) => {
+  return (
+    <div>
+        {
+            tasks.map((task) => (
+                <Task task={task} />
+            ))
+        }
+    </div>
+  )
+}
+
+export default Tasks
+```
+
+
+
+
 
 
 
