@@ -40,7 +40,7 @@ const handleClick = () => {
 
 - fakat biz Header.jsx'den button.jsx'e probs göndererek yapacağız. amacımız button'ı reusable hale getirmek. böylece bir component içerisinde button varsa sadece probs göndererek aynı button componentini değiştirmeden kullanabileceğiz.
 
-'''jsx
+```jsx
 <!-- button.jsx -->
 
 <button 
@@ -51,6 +51,40 @@ const handleClick = () => {
             {text}
         </button>
 ```
+
+- app.js dosyasına bakalım. burada useState snippet'ını kullanarak ile tasklarımızı oluşturacağız. 
+
+
+```js
+// app.js
+import {useState} from "react";
+
+  // useState'i yukarıda import ediyoruz ve tasklarımızı ekliyoruz.
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      text: "Task 1",
+      day: "Dec 12th at 2:30pm"
+    },
+    {
+      id: 2,
+      text: "Task 2",
+      day: "Dec 12th at 2:30pm "
+    },
+    {
+      id: 3,
+      text: "Task 3",
+      day: "Dec 12th at 2:30pm"
+    },
+    {
+      id: 4,
+      text: "Task 4",
+      day: "Dec 12th at 2:30pm"
+    },
+  ]);
+``` 
+
+- tasklarımızı oluşturduğumuza göre şimdi AddTask.jsx dosyasına dönüp componentimizi şekillendirip app.js dosyamıza ekleyebiliriz. eklediğimiz AddTask componentine app.js dosyamızdan az önce tasklar için oluşturduğumuz state'i probs olarak göndereceğiz: ```<AddTasks task={tasks}/>```
 
 
 
